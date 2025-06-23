@@ -15,7 +15,7 @@ TreeRec
 - More information about trees and data acquisition you can find in Janoutová et al. 2019.
 -------------------------------------------------------------------------------------------------------------------------
 **scripts**
-- Additional scripts, which can be used for preparation of your data in the same input format as is necessary for TreeRec algorithm
+- Additional python scripts, which can be used for preparation of your data in the same input format as is necessary for TreeRec algorithm
 - files:
   	- extract_FSCT_output_to_one_folder.py -> extracting segmented files (segmented.las) into one folder and rename them by tree id
    	- segmented_trees_to_foliage_reconstruction.py -> create three seperate objects (wood point cloud, wood point cloud for QSM reconstruction and foliage point cloud) in file formats that are used in QSM reconstruction and main part of TreeRec algorith 
@@ -28,19 +28,38 @@ treerec
 =========================================================================================================================
 - The main part of the TreeRec algorithm.
 -------------------------------------------------------------------------------------------------------------------------
+**dependency list**
+python 3.9.18
+alphashape==1.3.1
+click==8.1.8
+click-log==0.4.0
+colorama==0.4.6
+networkx==3.2.1
+numpy==2.0.2
+pandas==2.2.3
+python-dateutil==2.9.0.post0
+pytz==2025.1
+rtree==1.4.0
+scipy==1.13.1
+shapely==2.0.7
+six==1.17.0
+svgwrite==1.4.3
+tqdm==4.67.1
+trimesh==4.6.4
+tzdata==2025.1
+-------------------------------------------------------------------------------------------------------------------------
 **input data:**
 - separated wood component and foliage point clouds
 - QSM (3D object) - only wooden components
-	- It is necessary for RTM applications to check the normals of the facests (the right direction - it could be done in Blender).
- 	- Closed object - for RTM applications is also necessary that there are no light traps (open cylinders etc.) - can be done in blender with function **fill**
+	- Check the correct direction of facet normals - It is necessary for RTM applications to check the normals of the facests (the right direction - it could be done in Blender).
+ 	- Check if 3D object is closed object - for RTM applications it is also necessary that there are no light traps (open cylinders etc.) - can be done in blender with function _fill_.
 - 3D shoot/leaf model
 -------------------------------------------------------------------------------------------------------------------------
 **output data:**
-- 
-- the wooden structure object was filled/closed (the algorithm generate set of truncated cones
-	without closed top and bottom parts) - in blender if function fill -> filled wooden
-	structure object is made
-- application of RJ algorithm (Main.py)
+
+-------------------------------------------------------------------------------------------------------------------------
+**scripts**
+- Main.py
 	- this script is able to process several trees in one run
 	- parameters necessary to set are:
 		- id/name of the tree (variable trees_arr - line 9)
