@@ -1,4 +1,4 @@
-General ReadMe
+TreeRec
 =========================================================================================================================
 **data**
 -------------------------------------------------------------------------------------------------------------------------
@@ -17,24 +17,30 @@ General ReadMe
 -------------------------------------------------------------------------------------------------------------------------
 **scripts**
 -------------------------------------------------------------------------------------------------------------------------
- - additional codes, which can be used for preparation of your data in the same input format as is necessary for TreeRec algorithm
- - 
+ - Additional scripts, which can be used for preparation of your data in the same input format as is necessary for TreeRec algorithm
+ - files:
+ 	- AdQSM_to_XZY_00.py
+  	- extract_FSCT_output_to_one_folder.py
+   	- segmented_trees_to_foliage_reconstruction.py
 -------------------------------------------------------------------------------------------------------------------------
 segmentation_model
 -------------------------------------------------------------------------------------------------------------------------
-data
+- Forest Structural Complexity Tool (FSCT - https://github.com/SKrisanski/FSCT) adapted to Central European data, without coarse woody debris class
 -------------------------------------------------------------------------------------------------------------------------
 treerec
+=========================================================================================================================
+- The main part of the TreeRec algorithm.
+-------------------------------------------------------------------------------------------------------------------------
+processing:
 -------------------------------------------------------------------------------------------------------------------------
 
-processing:
 - data was separated into two parts: wooden and foliage point cloud
 - Sloup algorithm (or AdQSM, TreeQSM or another) was applied to the wooden point cloud -> wooden structure was made
 - it is necessary to check if the normals of the facets are set the right way (it could be done in Blender).
 - the wooden structure object was filled/closed (the algorithm generate set of truncated cones
 	without closed top and bottom parts) - in blender if function fill -> filled wooden
 	structure object is made
-- application of RJ algorithm (Main_beech_TH.py)
+- application of RJ algorithm (Main.py)
 	- this script is able to process several trees in one run
 	- parameters necessary to set are:
 		- id/name of the tree (variable trees_arr - line 9)
@@ -86,7 +92,9 @@ European beech (Fagus sylvatica)
 - the normals of leaf object has to be recalculated (it is a function in Blender) in Blender, so that all
 the normals are face up.
 ------------------------------------------------------------------------------------------------------
-References:
+**References:**
+
 Janoutová, R., Homolová, L., Malenovský, Z., Hanuš, J., Lauret, N., & Gastellu-Etchegorry, J.-P. (2019). Influence of 3D Spruce Tree Representation on Accuracy of Airborne and Satellite Forest Reflectance Simulated in DART. Forests, 10(3), 35. https://doi.org/10.3390/f10030292
+
 Sloup, P. (2013). Automatic Tree Reconstruction from its Laser Scan [Diploma Thesis]. MASARYK UNIVERSITY FACULTY OF INFORMATICS. Available online: https://is.muni.cz/th/325196/fi_m/?lang=en
 
