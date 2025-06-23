@@ -31,6 +31,9 @@ treerec
 =========================================================================================================================
 - The main part of the TreeRec algorithm.
 -------------------------------------------------------------------------------------------------------------------------
+**dependency list**
+- You can find a dependency list here - dependency_list.txt
+-------------------------------------------------------------------------------------------------------------------------
 **input data:**
 - separated wood component and foliage point clouds
 - QSM (3D object) - only wooden components
