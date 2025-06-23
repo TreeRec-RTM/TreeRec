@@ -1,5 +1,8 @@
 TreeRec
 =========================================================================================================================
+Some nice introduction - TBD
+
+-------------------------------------------------------------------------------------------------------------------------
 **data**
 - Test data of two Norway spruce trees (R1 and R2), which is working with the present form of the code.
 - Data set includes:
@@ -27,26 +30,6 @@ TreeRec
 treerec
 =========================================================================================================================
 - The main part of the TreeRec algorithm.
--------------------------------------------------------------------------------------------------------------------------
-**dependency list**
-python 3.9.18
-alphashape==1.3.1
-click==8.1.8
-click-log==0.4.0
-colorama==0.4.6
-networkx==3.2.1
-numpy==2.0.2
-pandas==2.2.3
-python-dateutil==2.9.0.post0
-pytz==2025.1
-rtree==1.4.0
-scipy==1.13.1
-shapely==2.0.7
-six==1.17.0
-svgwrite==1.4.3
-tqdm==4.67.1
-trimesh==4.6.4
-tzdata==2025.1
 -------------------------------------------------------------------------------------------------------------------------
 **input data:**
 - separated wood component and foliage point clouds
