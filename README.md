@@ -19,9 +19,9 @@ TreeRec
 -------------------------------------------------------------------------------------------------------------------------
  - Additional scripts, which can be used for preparation of your data in the same input format as is necessary for TreeRec algorithm
  - files:
- 	- AdQSM_to_XZY_00.py
-  	- extract_FSCT_output_to_one_folder.py
-   	- segmented_trees_to_foliage_reconstruction.py
+  	- extract_FSCT_output_to_one_folder.py -> extracting segmented files (segmented.las) into one folder and rename them by tree id
+   	- segmented_trees_to_foliage_reconstruction.py -> create three seperate objects (wood point cloud, wood point cloud for QSM reconstruction and foliage point cloud) in file formats that are used in QSM reconstruction and main part of TreeRec algorith 
+   	- AdQSM_to_XZY_00.py -> rotate and shift AdQSM OBJ file into XZY coordinates, and shift it to 0,0 coordinates
 -------------------------------------------------------------------------------------------------------------------------
 segmentation_model
 -------------------------------------------------------------------------------------------------------------------------
