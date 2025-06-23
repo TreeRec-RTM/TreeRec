@@ -1,9 +1,19 @@
 General ReadMe
 =========================================================================================================================
-data
+**data**
+-------------------------------------------------------------------------------------------------------------------------
  - Test data of two Norway spruce trees (R1 and R2), which is working with the present form of the code.
+ - Data set includes:
+  	- input files:
+    		- wood component point cloud (R*_*_k)
+ 		- foliage point cloud (R*_*_l)
+  		- quantitative structure model (QSM) made by Sloup (2013) (R*_wooden_parts_filled.obj)
+    		- 3D shoot objects - folder **shoots**
+   	- output files (folder scaled_cca_18m_LAI12):
+   	 	- information about exact location and rotation of each shoot model for two groups of foliage: current and older (R*_shoot_distribution_*.csv)
+   	  	-  	
+   
  - More information about trees and data acquisition you can find in Janoutová et al. 2019.
- - 
 -------------------------------------------------------------------------------------------------------------------------
 scripts
 -------------------------------------------------------------------------------------------------------------------------
@@ -75,4 +85,5 @@ the normals are face up.
 ------------------------------------------------------------------------------------------------------
 References:
 Janoutová, R., Homolová, L., Malenovský, Z., Hanuš, J., Lauret, N., & Gastellu-Etchegorry, J.-P. (2019). Influence of 3D Spruce Tree Representation on Accuracy of Airborne and Satellite Forest Reflectance Simulated in DART. Forests, 10(3), 35. https://doi.org/10.3390/f10030292
+Sloup, P. (2013). Automatic Tree Reconstruction from its Laser Scan [Diploma Thesis]. MASARYK UNIVERSITY FACULTY OF INFORMATICS. Available online: https://is.muni.cz/th/325196/fi_m/?lang=en
 
