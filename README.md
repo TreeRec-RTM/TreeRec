@@ -39,11 +39,17 @@ treerec
 - 3D shoot/leaf model
 -------------------------------------------------------------------------------------------------------------------------
 **output data:**
-
+- distribution file with calculated exact location and rotation of each 3D shoot/leaf object for current and older foliage (in case of coniferous specises)
+- scaled QSM (3D object)
+- 3D object of the whole tree (foliag+wood)  
 -------------------------------------------------------------------------------------------------------------------------
 **scripts**
 - Main.py
-	- this script is able to process several trees in one run
+	- Here all the input parameters are set:
+ 		- data path to data
+   		- list of trees for processing
+     		- name of output file 	   
+ 	- this script is able to process several trees in one run
 	- parameters necessary to set are:
 		- id/name of the tree (variable trees_arr - line 9)
 		- required height - the height required for the tree model (variable height_arr line 16)
@@ -54,7 +60,7 @@ treerec
 			adaptation from the spruce version of the script)
 		-> the output of this part of the algorithm is scaled wooden structure object, .csv
 			file with coordinates of leaf objects and the information about their rotation.
-- application of RJ algorithm (get_new_shoots_TH.py)
+- get_new_shoots_TH.py
 	- this algorithm distribute leaf objects within the tree crown according to the leaf distribution file
 		generated in previous step
 	- parameters necessary to set are:
@@ -84,6 +90,8 @@ treerec
 			(wooden structure and leaf object part of the tree in blender - import all the object in blender
 			and save them as one object with separated groups -> one object file with all the parts of the tree
 			- this is now possible to do in python directly, but it is not implemented yet
+- main_classes.py
+- geometry_op_new.py
 ======================================================================================================
 Specification for different species
 ======================================================================================================
