@@ -11,11 +11,14 @@ General ReadMe
     		- 3D shoot objects - folder **shoots**
    	- output files (folder scaled_cca_18m_LAI12):
    	 	- information about exact location and rotation of each shoot model for two groups of foliage: current and older (R*_shoot_distribution_*.csv)
-   	  	-  	
-   
+   	  	- transformed QSM in 3D objet format (R*_wooden_parts_filled_scaled.obj)
+   	  	- 3D object of the whole reconstructed tree - ready for Radiative Transfer Modelling applications (R*_whole_tree_simple.obj)
  - More information about trees and data acquisition you can find in Janoutová et al. 2019.
 -------------------------------------------------------------------------------------------------------------------------
-scripts
+**scripts**
+-------------------------------------------------------------------------------------------------------------------------
+ - additional codes, which can be used for preparation of your data in the same input format as is necessary for TreeRec algorithm
+ - 
 -------------------------------------------------------------------------------------------------------------------------
 segmentation_model
 -------------------------------------------------------------------------------------------------------------------------
