@@ -1,9 +1,8 @@
 TreeRec
 =========================================================================================================================
 **data**
--------------------------------------------------------------------------------------------------------------------------
- - Test data of two Norway spruce trees (R1 and R2), which is working with the present form of the code.
- - Data set includes:
+- Test data of two Norway spruce trees (R1 and R2), which is working with the present form of the code.
+- Data set includes:
   	- input files:
     		- wood component point cloud (R*_*_k)
  		- foliage point cloud (R*_*_l)
@@ -12,31 +11,32 @@ TreeRec
    	- output files (folder scaled_cca_18m_LAI12):
    	 	- information about exact location and rotation of each shoot model for two groups of foliage: current and older (R*_shoot_distribution_*.csv)
    	  	- transformed QSM in 3D objet format (R*_wooden_parts_filled_scaled.obj)
-   	  	- 3D object of the whole reconstructed tree - ready for Radiative Transfer Modelling applications (R*_whole_tree_simple.obj)
- - More information about trees and data acquisition you can find in Janoutová et al. 2019.
+   	  	- 3D object of the whole reconstructed tree - ready for Radiative Transfer Modelling (RTM) applications (R*_whole_tree_simple.obj)
+- More information about trees and data acquisition you can find in Janoutová et al. 2019.
 -------------------------------------------------------------------------------------------------------------------------
 **scripts**
--------------------------------------------------------------------------------------------------------------------------
- - Additional scripts, which can be used for preparation of your data in the same input format as is necessary for TreeRec algorithm
- - files:
+- Additional scripts, which can be used for preparation of your data in the same input format as is necessary for TreeRec algorithm
+- files:
   	- extract_FSCT_output_to_one_folder.py -> extracting segmented files (segmented.las) into one folder and rename them by tree id
    	- segmented_trees_to_foliage_reconstruction.py -> create three seperate objects (wood point cloud, wood point cloud for QSM reconstruction and foliage point cloud) in file formats that are used in QSM reconstruction and main part of TreeRec algorith 
    	- AdQSM_to_XZY_00.py -> rotate and shift AdQSM OBJ file into XZY coordinates, and shift it to 0,0 coordinates
 -------------------------------------------------------------------------------------------------------------------------
-segmentation_model
--------------------------------------------------------------------------------------------------------------------------
+**segmentation_model**
 - Forest Structural Complexity Tool (FSCT - https://github.com/SKrisanski/FSCT) adapted to Central European data, without coarse woody debris class
 -------------------------------------------------------------------------------------------------------------------------
 treerec
 =========================================================================================================================
 - The main part of the TreeRec algorithm.
 -------------------------------------------------------------------------------------------------------------------------
-processing:
+**input data:**
+- separated wood component and foliage point clouds
+- QSM (3D object) - only wooden components
+	- It is necessary for RTM applications to check the normals of the facests (the right direction - it could be done in Blender).
+ 	- Closed object - for RTM applications is also necessary that there are no light traps (open cylinders etc.) - can be done in blender with function **fill**
+- 3D shoot/leaf model
 -------------------------------------------------------------------------------------------------------------------------
-
-- data was separated into two parts: wooden and foliage point cloud
-- Sloup algorithm (or AdQSM, TreeQSM or another) was applied to the wooden point cloud -> wooden structure was made
-- it is necessary to check if the normals of the facets are set the right way (it could be done in Blender).
+**output data:**
+- 
 - the wooden structure object was filled/closed (the algorithm generate set of truncated cones
 	without closed top and bottom parts) - in blender if function fill -> filled wooden
 	structure object is made
