@@ -2,6 +2,8 @@ TreeRec
 =========================================================================================================================
 The algorithm places 3D shoot or leaf objects within a tree crown in a biologically realistic manner and merges them with a Quantitative Structure Model (QSM) of woody components. Placement is guided by Terrestrial Laser Scanning (TLS) data, leaf angle distribution (LAD), and leaf area index (LAI). Once the positions and orientations of all shoot or leaf objects are computed, the algorithm generates a single 3D foliage object and integrates it with the QSM, producing a merged 3D representation with distinct subgroups for wood and foliage.
 
+For more details see Janoutová et al. 2019, 2021
+
 -------------------------------------------------------------------------------------------------------------------------
 **data**
 - Test data of two Norway spruce trees (R1 and R2), which is working with the present form of the code.
@@ -108,6 +110,8 @@ the normals are face up.
 **References:**
 
 Janoutová, R., Homolová, L., Malenovský, Z., Hanuš, J., Lauret, N., & Gastellu-Etchegorry, J.-P. (2019). Influence of 3D Spruce Tree Representation on Accuracy of Airborne and Satellite Forest Reflectance Simulated in DART. Forests, 10(3), 35. https://doi.org/10.3390/f10030292
+
+Janoutová, R., Homolová, L., Novotný, J., Navrátilová, B., Pikl, M., & Malenovský, Z. (2021). Detailed reconstruction of trees from terrestrial laser scans for remote sensing and radiative transfer modelling applications. In Silico Plants, 3(2). https://doi.org/10.1093/insilicoplants/diab026
 
 Sloup, P. (2013). Automatic Tree Reconstruction from its Laser Scan [Diploma Thesis]. MASARYK UNIVERSITY FACULTY OF INFORMATICS. Available online: https://is.muni.cz/th/325196/fi_m/?lang=en
 
