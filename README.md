@@ -1,6 +1,6 @@
 TreeRec
 =========================================================================================================================
-Some nice introduction - TBD
+The algorithm places 3D shoot or leaf objects within a tree crown in a biologically realistic manner and merges them with a Quantitative Structure Model (QSM) of woody components. Placement is guided by Terrestrial Laser Scanning (TLS) data, leaf angle distribution (LAD), and leaf area index (LAI). Once the positions and orientations of all shoot or leaf objects are computed, the algorithm generates a single 3D foliage object and integrates it with the QSM, producing a merged 3D representation with distinct subgroups for wood and foliage.
 
 -------------------------------------------------------------------------------------------------------------------------
 **data**
@@ -44,12 +44,12 @@ treerec
 **output data:**
 - distribution file with calculated exact location and rotation of each 3D shoot/leaf object for current and older foliage (in case of coniferous specises)
 - scaled QSM (3D object)
-- 3D object of the whole tree (foliag+wood)  
+- 3D object of the whole tree (foliag+wood)
 -------------------------------------------------------------------------------------------------------------------------
 **scripts**
 - Main.py
 	- Here all the input parameters are set:
- 		- data path to data
+ 		- path to input and output data
    		- list of trees for processing
      		- name of output file 	   
  	- this script is able to process several trees in one run
