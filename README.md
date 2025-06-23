@@ -50,25 +50,19 @@ treerec
 -------------------------------------------------------------------------------------------------------------------------
 **scripts**
 - Main.py
-	- Here all the input parameters are set:
- 		- path to input and output data
-   		- list of trees for processing
-     		- name of output file 	   
+ 	- thi algorithm compute the positions and rotations of each 3D shoot/leaf objects within the tree crown
+  	- input parameters to be set:
+ 		- path and name of input and output files
+   		- list of trees for processing - their IDs (e.g., R1 or R2)
+       		- the required height you want your final model to be scaled to - if set 0 the 3D object will have the same dimensions as the original tree
+         	- tree LAI value, note that the canopy LAI (usually measured in field) would be lower
+          	- technical parameters (d_cube, env_cube_size) for tuning of the distribution of leaf objects
+          	- shoot or leaf object area - need to be set correctly. Based on this parameter and tree LAI is computed the total number of the 3D shoot/leaf objects
  	- this script is able to process several trees in one run
-	- parameters necessary to set are:
-		- id/name of the tree (variable trees_arr - line 9)
-		- required height - the height required for the tree model (variable height_arr line 16)
-		- LAI value (variable LAI_arr line 23)
-		- area of leaf object - necessary for getting the right LAI (number of leaf objects in the tree crown
-			according to LAI value)
-		- size of cubes for computation of leaf positions (the env_cube_size is probably redundant - it is not cleared after
-			adaptation from the spruce version of the script)
-		-> the output of this part of the algorithm is scaled wooden structure object, .csv
-			file with coordinates of leaf objects and the information about their rotation.
-- get_new_shoots_TH.py
-	- this algorithm distribute leaf objects within the tree crown according to the leaf distribution file
-		generated in previous step
-	- parameters necessary to set are:
+	-> the output of this part of the algorithm is scaled wooden structure object, distribution file
+- get_new_shoots.py
+ 	- this algorithm distribute 3D shoot/leaf objects within the tree crown according to the leaf distribution file from previous step (Main.py)
+  	- parameters necessary to set are:
 		- directory of the files computed in the previous step (the location of leaf positions) - leaf distribution file
 		- tree id/name
 		- here is possible to set the leaf object for creating the 3D model of the tree
