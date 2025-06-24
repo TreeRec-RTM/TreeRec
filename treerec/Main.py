@@ -13,7 +13,7 @@ QSM_base_name = '_wooden_parts_filled.obj' # the full name should be R1_wooden_p
 trees_arr = ['R2','R1']
 # leaf_name = 'PIABshoot0_one_shoot_simpl_bl' # name of the shoot/leaf object without .obj
 leaf_type = 'simple' # it will apear in the file name of the whole tree 3D object
-leaf_form = 'single_leaf' # all options: single_leaf, three_leaves, multiple_leaves - described below
+leaf_form = 'three_leaves' # all options: single_leaf, three_leaves, multiple_leaves - described below
 # current_shoots = False # True for generating shoots in two age categories (current and older ones) -> two set of object groups; False if all the leaves/shoots will be in the same age -> one object group
 height_arr = [18,15] # array of required_height = 18 for the tree R2 and 15 for R1,if is height set to 0, the tree dimensions will be preserved as original
 leaf_area = 0.007604  # from object PIABshoot0_one_shoot_real_size_without_twig.obj

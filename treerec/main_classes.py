@@ -9,7 +9,7 @@ import multiprocessing as mp
 from math import *
 #import itertools
 from scipy.cluster.vq import kmeans
-from random import uniform
+from random import uniform, choice
 import shutil
 
 class general_setup:
@@ -51,7 +51,7 @@ class general_setup:
         list_veg_path, list_woo_path = self.get_files(tree_name, self.source_dir)
         list_veg_path.sort() # for the right order in paralel for cycle
         list_woo_path.sort()
-        veg_all_path = os.path.join(self.source_dir, tree_name + '_all.obj')
+        veg_all_path = os.path.join(self.source_dir, 'tmp', tree_name + '_all.obj')
         veg_all_file = open(veg_all_path, 'w')
         max_skeleton = self.find_max_z(self.wooden_obj_orig_path)
         if required_height == 0:
@@ -67,14 +67,14 @@ class general_setup:
                     print('The file ' + woo_file + ' or ' + veg_file + ' doesn\'t have corresponding file.')
                     exit()
                 try:
-                    b_woo_path = os.path.join(self.source_dir, woo_file + '_orig.obj')
+                    b_woo_path = os.path.join(self.source_dir, 'tmp', woo_file + '_orig.obj')
                     max_woo = self.find_max_z(b_woo_path) # is max height of the single file of wooden parts point cloud (if there are multiple scans from TLS scanning)
                     if max_wooden[1] < max_woo[1]:
                         max_wooden = max_woo
                 except TypeError:
                     pass # eh... I can't remember, what exactly is this catching
                 try:
-                    l_veg_path = os.path.join(self.source_dir, veg_file)
+                    l_veg_path = os.path.join(self.source_dir, 'tmp', veg_file)
                     b_veg_path = l_veg_path + '_orig.obj' # lidar file tranformed to obj format
                     b_veg_trans_path = l_veg_path + '_trans.obj' # original data transposed to the same coordinates as the wooden skeleton
                     b_veg_scale_path = l_veg_path + '.obj' # transposed data scaled to recquired height
@@ -181,7 +181,7 @@ class general_setup:
                         file_list_woo.append(i_file)
                     else:
                         continue # I want to skip the rest of the loop in this condition
-                    i_path = os.path.join(self.source_dir, i_file)
+                    i_path = os.path.join(self.source_dir, 'tmp', i_file)
                     b_i_path = i_path + '_orig.obj'
                     self.load_lidar(i_path, b_i_path) # converting the lidar file to obj format
         if not file_list_veg:
