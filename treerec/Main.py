@@ -4,16 +4,15 @@ from main_classes import Tree, general_setup
 from colorama import Fore, Back, Style
 
 home_dir = os.getcwd()
-#home_dir = '/media/janoutova/Elements/backup_ntb/home/Documents/scripts/disertation/'
-home_dir = '/home/janoutova.r/Documents/TreeRec/'
 trees_arr = ['R2','R1']
-#shoot_name = 'PIAB_one_shoot_real_size_twig_needle_sep'
-shoot_name = 'PIABshoot0_one_shoot_simpl_bl'
-shoot_type = 'simple' # 'simple' # fpr example
-height_arr = [18,18] # array of required_height = 13  # if is height set to 0, the height will be preserved as original
-shoot_area = 0.007604  # from object PIABshoot0_one_shoot_real_size_without_twig.obj and shoot_area.ods
-LAI_value = 12
+shoot_name = 'PIABshoot0_one_shoot_simpl_bl' # name of the shoot/leaf object without .obj
+shoot_type = 'simple' # it will apear in the file name of the whole tree 3D object
+shoot_form = 'single_leaf' # all options: single_leaf, three_leaves, multiple_leaves - described below
+height_arr = [18,15] # array of required_height = 18 for the tree R2 and 15 for R1,if is height set to 0, the tree dimensions will be preserved as original
+shoot_area = 0.007604  # from object PIABshoot0_one_shoot_real_size_without_twig.obj
+LAI_arr = [12,5] # array of LAI values per tree
 note = '' # if you want to add some note to the folder name
+
 # ## for original height cca 25
 # d_cube = 0.3  # the diameter of the sphere, which will represent one cluster. It should be equal cca 30 cm.
 # env_cube_size = 0.75
@@ -24,12 +23,30 @@ note = '' # if you want to add some note to the folder name
 # env_cube_size = 0.3
 
 # ## for height 18 - after all modifications
-d_cube = 0.075  # the diameter of the sphere, which will represent one cluster. It should be equal cca 18 cm.
+d_cube = 0.075  # the diameter of the sphere, which will represent one cluster. It should be equal cca 7.5 cm.
 env_cube_size = 0.5
 
 ## optional changed
-# d_cube = 0.03  # the diameter of the sphere, which will represent one cluster. It should be equal cca 30 cm.
+# d_cube = 0.03  # the diameter of the sphere, which will represent one cluster. It should be equal cca 3 cm.
 # env_cube_size = 0.05
+
+# for Tree_name, sLAI in tree_set:
+#     #Tree_name = 'tree_6'
+#     vegetation_path = os.path.join(data_path, Tree_name)
+#
+#     if leaf_form == 'three_leaves':
+#         leaf_name_ave = 'beech_leaf_simple.obj' # fill up name of your own average leaf object
+#         leaf_name_sma = 'beech_leaf_simple_smaller.obj' # fill up name of your own smaller leaf object
+#         leaf_name_big = 'beech_leaf_simple_larger.obj' # fill up name of your own larger leaf object
+#         leaf_name_arr = [leaf_name_ave, leaf_name_sma, leaf_name_big]
+#     elif leaf_form == 'multiple_leaves':
+#         leaf_name_arr = ['beech_leaf_simple_1.obj','beech_leaf_simple_2.obj','beech_leaf_simple_3.obj','beech_leaf_simple_4.obj','beech_leaf_simple_5.obj']
+#     else: # leaf_form == 'single_leaf' and also the default one
+#         # leaf_name_arr = 'beech_leaf.obj'
+#         #leaf_name_arr = 'beech_leaf_simple.obj'
+#          #leaf_name_arr = 'maple_leaf_DART_rot.obj'
+#          #leaf_name_arr = 'oak_leaf_1_simple.obj'
+#          leaf_name_arr = 'birch_leaf_1_simple.obj'
 
 source_dir = os.path.join(home_dir, 'data')
 if not os.path.isdir(source_dir):

@@ -237,7 +237,7 @@ class Tree:
 
     #def set_opt_hull_cs(self):
         #""" 
-        #find the optimal hull cube size (hull is more precise than envelope (prejato z cestiny a asi spatne - bylo by dobry to pak vsude predelat... at to nemate) 
+        #find the optimal hull cube size (hull is more precise than envelope phrase - need to be changed in the rest of the code)
         #"""
     
     def initiate_tree(self, max_vegetation):
@@ -378,7 +378,7 @@ class Tree:
         print('--------------------------------------------------------------')
 
     def find_clusters_in_lvl(self, i, arr_c_lvl_ind, shoot_coef):
-        # spatne predelany indexovani
+        # wrong indexing
         #if i==0:
             #cube_slvl_ind = arr_c_lvl_ind[i]
         #else:
@@ -399,22 +399,6 @@ class Tree:
         #else:
             #return []
 
-    #def get_shoots_in_cube(self, vox_arr, origin, cube_size):
-        #"""
-        #Find the point/position lying in the cube. This function is temporarily commented, because the computation was solved different way. But it is still possible that it will be needed later, after some other modification of the other functions. So it stay here for a while (at least until the whole script will be completely revised and tested).
-        #@param origin: origin corners of the cube, where we want to find the points/positions
-        #@return: list of points/positions in and out of the cube
-        #note: It could be applied the multiprocessing approach.
-        #"""
-        #vox_in = []
-        #vox_out = []
-        #for i_vox in vox_arr:
-            #if (origin[0] <= i_vox[0] <= (origin[0]+cube_size)) and (origin[1] <= i_vox[1] <= (origin[1]+cube_size)) and (origin[2] <= i_vox[2] <= (origin[2]+cube_size)):
-                #vox_in.append(i_vox)
-            #else:
-                #vox_out.append(i_vox)
-        #return vox_in, vox_out
-    
     def age_separation(self, origin, end):
         """
         Separation of the shoot positions into two age classes. Calculation is based on the distance of each position from center of the tree (calculating before) and the known percentage of current shoots depending on the tree height. 
