@@ -59,7 +59,7 @@ else:
         tree_name = trees_arr[i_tree]
         mine_leaf = Leaf(leaf_dir, leaf_name_arr, leaf_area, leaf_form)
         # mine_setup = general_setup(source_dir, final_dir, tree_name, leaf_name, leaf_type)
-        mine_setup = general_setup(source_dir, QSM_dir, QSM_base_name, final_dir, tree_name, leaf_type, current_shoots)
+        mine_setup = general_setup(source_dir, QSM_dir, QSM_base_name, final_dir, tree_name, leaf_type)
         # mine_tree = Tree(tree_name, d_cube, leaf_area, LAI_value, env_cube_size, mine_setup)
         mine_tree = Tree(tree_name, d_cube, LAI_value, env_cube_size, mine_setup, mine_leaf)
         mine_tree.initiate_tree(required_height)
