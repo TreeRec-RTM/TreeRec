@@ -31,7 +31,7 @@ For more details see Janoutová et al. 2019, 2021
 -------------------------------------------------------------------------------------------------------------------------
 treerec
 =========================================================================================================================
-- The main part of the TreeRec algorithm.
+- The main part of the TreeRec algorithm. Computes positions of individual 3D leaf/shoot objects and merge them with given QSM (3D object).
 -------------------------------------------------------------------------------------------------------------------------
 **dependency list**
 - You can find a dependency list here - dependency_list.txt
@@ -53,7 +53,6 @@ treerec
 -------------------------------------------------------------------------------------------------------------------------
 **scripts**
 - Main.py
- 	- thi algorithm compute the positions and rotations of each 3D shoot/leaf objects within the tree crown
   	- input parameters to be set:
  		- path and name of input and output files
    		- list of trees for processing - their IDs (e.g., R1 or R2)
