@@ -23,7 +23,7 @@ For more details see Janoutová et al. 2019, 2021
 - Additional python scripts, which can be used for preparation of your data in the same input format as is necessary for TreeRec algorithm
 - files:
   	- extract_FSCT_output_to_one_folder.py -> extracting segmented files (segmented.las) into one folder and rename them by tree id
-   	- segmented_trees_to_foliage_reconstruction.py -> create three seperate objects (wood point cloud, wood point cloud for QSM reconstruction and foliage point cloud) in file formats that are used in QSM reconstruction and main part of TreeRec algorith 
+   	- segmented_trees_to_foliage_reconstruction.py -> create three separate objects (wood point cloud, wood point cloud for QSM reconstruction and foliage point cloud) in file formats that are used in QSM reconstruction and main part of TreeRec algorithm
    	- AdQSM_to_XZY_00.py -> rotate and shift AdQSM OBJ file into XZY coordinates, and shift it to 0,0 coordinates
 -------------------------------------------------------------------------------------------------------------------------
 **segmentation_model**
@@ -38,18 +38,18 @@ treerec
 -------------------------------------------------------------------------------------------------------------------------
 **input data:**
 - separated wood component and foliage point clouds
-	- it is possible to have only one file for foliage and one file for wooden components point cloud, but also it is possible to have multiple files, for example from different scanning position, but it has to be coregistred
+	- it is possible to have only one file for foliage and one file for wooden components point cloud, but also it is possible to have multiple files, for example from different scanning position, but it has to be co-registered
 	- format of the file name for the foliage/leaves - $treeID_*_l (R1_F-1_l)
 	- format of the file name for the wooden components - $treeID_*_w (R2_F-2_w)
 - QSM (3D object) - only wooden components
-	- Check the correct direction of facet normals - It is necessary for RTM applications to check the normals of the facests (the right direction - it could be done in Blender).
+	- Check the correct direction of facet normals - It is necessary for RTM applications to check the normals of the facets (the right direction - it could be done in Blender).
  	- Check if 3D object is closed object - for RTM applications it is also necessary that there are no light traps (open cylinders etc.) - can be done in blender with function _fill_.
 - 3D shoot/leaf model
 -------------------------------------------------------------------------------------------------------------------------
 **output data:**
-- distribution file with calculated exact location and rotation of each 3D shoot/leaf object for current and older foliage (in case of coniferous specises)
+- distribution file with calculated exact location and rotation of each 3D shoot/leaf object for current and older foliage (in case of coniferous species)
 - scaled QSM (3D object)
-- 3D object of the whole tree (foliag+wood)
+- 3D object of the whole tree (foliage + wood)
 -------------------------------------------------------------------------------------------------------------------------
 **scripts**
 - Main.py
