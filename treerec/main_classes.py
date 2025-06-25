@@ -359,7 +359,6 @@ class Tree:
         ##del vox_in_cube, vox_in_line, vox_in_lvl
         ## --------------------------------------- it would be shame not to use this block (above) ---------------------------------------
         del vox_in_lvl
-        # print(self.all_pos)
         print('The clusters found.')
         print('It takes %s seconds.' % (time.time()-start_time))
         print('--------------------------------------------------------------')
@@ -369,26 +368,6 @@ class Tree:
             self.age_separation(origin, end)
             self.get_shoot_angle(self.current_pos, self.gen_setup.cur_pos_path)
             self.get_shoot_angle(self.older_pos, self.gen_setup.old_pos_path)
-            # t_file_edge_name = self.gen_setup.cur_pos_path
-            # t_file_edge = open(t_file_edge_name, 'w')
-            # t_file_edge_csv = csv.writer(t_file_edge, delimiter=' ')
-            # print(self.current_pos)
-            # for i_vox in tqdm(self.current_pos):
-            #     angle = self.get_shoot_angle(i_vox[1])
-            #     t_line = [i_vox[0], i_vox[1], i_vox[2], angle]
-            #     t_file_edge_csv.writerow(t_line)
-            #     del t_line
-            # t_file_edge.close()
-            # t_file_in_name = self.gen_setup.old_pos_path
-            # t_file_in = open(t_file_in_name, 'w')
-            # t_file_in_csv = csv.writer(t_file_in, delimiter=' ')
-            # for i_vox in tqdm(self.older_pos):
-            #     angle = self.get_shoot_angle(i_vox[1])
-            #     t_line = [i_vox[0], i_vox[1], i_vox[2], angle]
-            #     t_file_in_csv.writerow(t_line)
-            #     del t_line
-            # # t_file_edge.close()
-            # t_file_in.close()
         else:
             self.get_shoot_angle(self.all_pos, self.gen_setup.pos_path)
         print('Distribution files created.')
@@ -538,15 +517,21 @@ class Tree:
                     f2.write(obj_file.read())
             os.rename(self.gen_setup.tree_obj_path[:-4]+'_tmp',self.gen_setup.tree_obj_path)
             obj_file.close()
-            cur_distr_file = open(self.gen_setup.cur_pos_path, 'r')
-            cur_distr_csv_file = csv.reader(cur_distr_file, delimiter=' ')
-            old_distr_file = open(self.gen_setup.old_pos_path, 'r')
-            old_distr_csv_file = csv.reader(old_distr_file, delimiter=' ')
-            self.write_shoots(old_distr_csv_file,'older')
-            self.write_shoots(cur_distr_csv_file,'current')
+            if self.gen_setup.cs_check:
+                cur_distr_file = open(self.gen_setup.cur_pos_path, 'r')
+                cur_distr_csv_file = csv.reader(cur_distr_file, delimiter=' ')
+                old_distr_file = open(self.gen_setup.old_pos_path, 'r')
+                old_distr_csv_file = csv.reader(old_distr_file, delimiter=' ')
+                self.write_shoots(old_distr_csv_file,'older')
+                self.write_shoots(cur_distr_csv_file,'current')
+                cur_distr_file.close()
+                old_distr_file.close()
+            else:
+                distr_file = open(self.gen_setup.pos_path, 'r')
+                distr_csv_file = csv.reader(distr_file, delimiter=' ')
+                self.write_shoots(distr_csv_file,'current')
+                distr_file.close()
             obj_file.close()
-            cur_distr_file.close()
-            old_distr_file.close()
             print('obj file created.')
             print('It takes %s seconds.' % (time.time()-start_time))
             print('--------------------------------------------------------------')
