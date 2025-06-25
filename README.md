@@ -9,7 +9,7 @@ For more details see Janoutová et al. 2019, 2021
 - Test data of two Norway spruce trees (R1 and R2), which is working with the present form of the code.
 - Data set includes:
   	- input files:
-    		- wood component point cloud (R*_*_k)
+    		- wood component point cloud (R*_*_w)
  		- foliage point cloud (R*_*_l)
   		- quantitative structure model (QSM) made by Sloup (2013) (R*_wooden_parts_filled.obj)
     		- 3D shoot objects - folder **shoots**
@@ -38,6 +38,8 @@ treerec
 -------------------------------------------------------------------------------------------------------------------------
 **input data:**
 - separated wood component and foliage point clouds
+	- format of the file name for the foliage/leaves - $treeID_*_l (R1_F-1_l)
+	- format of the file name for the wooden components - $treeID_*_w (R2_F-2_w)
 - QSM (3D object) - only wooden components
 	- Check the correct direction of facet normals - It is necessary for RTM applications to check the normals of the facests (the right direction - it could be done in Blender).
  	- Check if 3D object is closed object - for RTM applications it is also necessary that there are no light traps (open cylinders etc.) - can be done in blender with function _fill_.
