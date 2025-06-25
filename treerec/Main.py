@@ -14,11 +14,8 @@ trees_arr = ['R2','R1'] # point clouds foliage and wooden commponents have to be
 # leaf_name = 'PIABshoot0_one_shoot_simpl_bl' # name of the shoot/leaf object without .obj
 leaf_type = 'simple' # it will apear in the file name of the whole tree 3D object
 leaf_form = 'single_leaves' # all options: single_leaf, three_leaves, multiple_leaves - described below
-current_shoots = False # True for generating shoots in two age categories (current and older ones) -> two set of object groups; False if all the leaves/shoots will be in the same age -> one object group
-# LAD_type = 'spruce' # based on measured data Janoutova et al. 2019 not prepared for other species
-LAD_type = 'file' # if you want to use a LAD (leaf angle distribution) defined by file
-LAD_dir = home_dir # the directory where the LAD file is placed
-LAD_file = 'LAD_plano.txt' # the name of the LAD file
+current_shoots = False # True for generating shoots in two age categories (current and older ones) -> two set of object groups; False if all the leaves/shoots will be in the same age -> one object group. The percentage is now set for Norway spruce species only
+
 height_arr = [18,15] # array of required_height = 18 for the tree R2 and 15 for R1,if is height set to 0, the tree dimensions will be preserved as original
 leaf_area = 0.007604  # from object PIABshoot0_one_shoot_real_size_without_twig.obj
 LAI_arr = [12,5] # array of LAI values per tree
@@ -41,6 +38,13 @@ env_cube_size = 0.5
 # d_cube = 0.03  # the diameter of the sphere, which will represent one cluster. It should be equal cca 3 cm.
 # env_cube_size = 0.05
 
+# LAD_type = 'spruce' # based on measured data Janoutova et al. 2019 not prepared for other species
+LAD_type = 'file' # if you want to use a LAD (leaf angle distribution) defined by file
+if LAD_type == 'file':
+    LAD_dir = home_dir # the directory where the LAD file is placed
+    LAD_file_name = 'LAD_plano.txt' # the name of the LAD file
+    LAD_file = os.path.join(LAD_dir, LAD_file_name)
+
 if leaf_form == 'three_leaves':
     leaf_name_ave = 'beech_leaf_simple.obj' # fill up name of your own average leaf object
     leaf_name_sma = 'beech_leaf_simple_smaller.obj' # fill up name of your own smaller leaf object
@@ -62,10 +66,10 @@ else:
         required_height = height_arr[i_tree]
         tree_name = trees_arr[i_tree]
         mine_leaf = Leaf(leaf_dir, leaf_name_arr, leaf_area, leaf_form)
-        # mine_setup = general_setup(source_dir, final_dir, tree_name, leaf_name, leaf_type)
         mine_setup = general_setup(source_dir, QSM_dir, QSM_base_name, final_dir, tree_name, leaf_type, current_shoots)
-        # mine_tree = Tree(tree_name, d_cube, leaf_area, LAI_value, env_cube_size, mine_setup)
         mine_tree = Tree(tree_name, d_cube, LAI_value, env_cube_size, mine_setup, mine_leaf)
+        if LAD_type == 'file':
+            setattr(mine_tree, 'LAD_file', LAD_file)
         mine_tree.initiate_tree(required_height)
         mine_tree.create_tree_obj_file()
         del mine_setup, mine_tree

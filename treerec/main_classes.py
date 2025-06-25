@@ -9,6 +9,7 @@ import multiprocessing as mp
 from math import *
 #import itertools
 from scipy.cluster.vq import kmeans
+from scipy import stats
 from random import uniform, choice
 import shutil
 
@@ -231,7 +232,6 @@ class Tree:
         # self.s_area = shoot_area # shoot area computed by blender
         self.leaf = leaf_cls
         self.LAI = lai # required LAI value (pure LAi, only needles)
-        
         self.center = [0,0] # center of tree - the default value if it is not define/cimpute differently
         self.env_cs = hull_cube_size # cube/voxel size for the hull(envelope) calculation
         self.gen_setup = general_tree_setup
@@ -366,10 +366,17 @@ class Tree:
         start_time = time.time()
         if self.gen_setup.cs_check:
             self.age_separation(origin, end)
-            self.get_shoot_angle(self.current_pos, self.gen_setup.cur_pos_path)
-            self.get_shoot_angle(self.older_pos, self.gen_setup.old_pos_path)
+            if hasattr(self, self.LAD_file):
+                self.get_leaf_angle_LAD(self.current_pos, self.gen_setup.cur_pos_path)
+                self.get_leaf_angle_LAD(self.older_pos, self.gen_setup.old_pos_path)
+            else:
+                self.get_shoot_angle(self.current_pos, self.gen_setup.cur_pos_path)
+                self.get_shoot_angle(self.older_pos, self.gen_setup.old_pos_path)
         else:
-            self.get_shoot_angle(self.all_pos, self.gen_setup.pos_path)
+            if hasattr(self, self.LAD_file):
+                self.get_leaf_angle_LAD(self.all_pos, self.gen_setup.pos_path)
+            else:
+                self.get_shoot_angle(self.all_pos, self.gen_setup.pos_path)
         print('Distribution files created.')
         print('It takes %s seconds.' % (time.time()-start_time))
         print('--------------------------------------------------------------')
@@ -433,7 +440,7 @@ class Tree:
     
     def get_per(self,z_coo):
         """
-        Determine the percentage of the current shoots/needles for the given height level (z-coo) of the tree.
+        Determine the percentage of the current shoots/needles for the given height level (z-coo) of the tree. The percentage is now set for Norway spruce species only, based on measurments, described in Janoutova et al. 2019 or Barták 1992 (only in czech language)
         @param z_coo: z-coordinate corresponding to the height level at the tree.
         @return: The percentage of the current shoots/needles in the given height level
         """
@@ -462,15 +469,12 @@ class Tree:
         return per
 
     def get_shoot_angle(self, t_pos, t_pos_path):
-    # def get_shoot_angle(self, z_coo):
         """
         Definition of the shoot elevation angle (zero is on the horizontal level - perpendicular to the trunk/axes of the tree) depending on height in the tree.
         @param t_pos: calculated shoot/leaf postions
         @param t_pos_path: path to the file with positions
-        @return: zenith angle of the shoot - given angle is adjusted to rotation calculation -> the zero is on from above
         note:
          - could be separated to current and the older needles - according to Barták 1992 we are able to define the angle for all age classes of shoots
-         - in the future for the generalization of the script, here should be the option for selection of the method how to define LAD, if this way, to set the values for each height level at the tree or by LAD function (as it made in case of eucalipt trees or equation)
         """
         t_file_name = t_pos_path
         t_file = open(t_file_name, 'w')
@@ -493,6 +497,27 @@ class Tree:
                 angle = (-35 + uniform(-15, 15)) * pi/180
             angle = pi/2 - angle
             t_line = [i_vox[0], i_vox[1], i_vox[2], angle]
+            t_file_csv.writerow(t_line)
+            del t_line
+        t_file.close()
+
+    def get_leaf_angle_LAD(self, t_pos, t_pos_path):
+        """
+        Definition of the leaf elevation angle (zero is on the horizontal level - perpendicular to the trunk/axes of the tree) depending on height in the tree. Based on LAD.txt file.
+        @param
+        note:
+         - could be separated to current and the older needles - according to Barták 1992 we are able to define the angle for all age classes of shoots
+        """
+        t_file_name = t_pos_path
+        t_file = open(t_file_name, 'w')
+        t_file_csv = csv.writer(t_file, delimiter=' ')
+        ang_x, ang_y = np.loadtxt(self.LAD_file, unpack=True)
+        LAD_dist = stats.rv_discrete(name='er_dist',values=(ang_x,ang_y))
+        gen_ang = LAD_dist.rvs(size=len(t_pos))
+        for i_v in tqdm(range(len(t_pos))):
+        # for i_v in range(len(t_pos)):
+            angle = (90 - gen_ang[i_v])*(pi/180)
+            t_line = [t_pos[i_v][0], t_pos[i_v][1], t_pos[i_v][2], angle]
             t_file_csv.writerow(t_line)
             del t_line
         t_file.close()
@@ -529,7 +554,7 @@ class Tree:
             else:
                 distr_file = open(self.gen_setup.pos_path, 'r')
                 distr_csv_file = csv.reader(distr_file, delimiter=' ')
-                self.write_shoots(distr_csv_file,'current')
+                self.write_shoots(distr_csv_file,'all')
                 distr_file.close()
             obj_file.close()
             print('obj file created.')

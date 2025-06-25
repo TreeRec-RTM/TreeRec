@@ -38,6 +38,7 @@ treerec
 -------------------------------------------------------------------------------------------------------------------------
 **input data:**
 - separated wood component and foliage point clouds
+	- it is possible to have only one file for foliage and one file for wooden components point cloud, but also it is possible to have multiple files, for example from different scanning position, but it has to be coregistred
 	- format of the file name for the foliage/leaves - $treeID_*_l (R1_F-1_l)
 	- format of the file name for the wooden components - $treeID_*_w (R2_F-2_w)
 - QSM (3D object) - only wooden components
