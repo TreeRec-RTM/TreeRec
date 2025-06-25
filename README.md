@@ -53,34 +53,42 @@ treerec
 -------------------------------------------------------------------------------------------------------------------------
 **scripts**
 - Main.py
-  	- input parameters to be set:
- 		- path and name of input and output files
-   		- list of trees for processing - their IDs (e.g., R1 or R2)
-       		- the required height you want your final model to be scaled to - if set 0 the 3D object will have the same dimensions as the original tree
-         	- tree LAI value, note that the canopy LAI (usually measured in field) would be lower
-          	- technical parameters (d_cube, env_cube_size) for tuning of the distribution of leaf objects
-          	- shoot or leaf object area - need to be set correctly. Based on this parameter and tree LAI is computed the total number of the 3D shoot/leaf objects
- 	- this script is able to process several trees in one run
-	- there are three possibilities how to set a leaf object or objects
-		1) single leaf - 'single_leaf'
-			- The tree crown will contain only one leaf object, which will vary only sligthly in the size
-				- The area of this leaf has to be the same as set in the (Main.py)
-			- If you select this option, then you need to set your leaf object name on line 33
-		2) three leaves - 'three_leaves'
-			- The tree crown will contain three different leaf objects: one represents average leaf (in terms of area),
-				 one smaller and one larger.
-				- There will be 50% of average leaves and 25% of smaller and 25% of larger leaves
-				- The average (50% average, 25% smaller and 25% of larger) leaf area has to be the same
-					as set in the (Main.py)
-				- The size of all leaf objects will also sligthly vary
-			- if you select this option, then you need to set your leaf object names on lines 25-27
-		3) multiple leaves - 'multiple_leaves'
-			- The tree crown will contain all the leaf objects you set here
-				- The average leaf area of all leaves set here has to be the same as set in the (Main_beech_TH.py)
-				- The size of all leaf objects will also vary
-			- If you select this option, then you need to set your leaf object names on line 30
+	- has to be set here:
+		- paths and names of input and output files
+		- list of trees for processing - their IDs (e.g., R1 or R2)
+		- this script is able to process several trees in one run
+		- the required height you want your final model to be scaled to - if set 0 the 3D object will have the same dimensions as the original tree
+		- tree LAI values, note that the canopy LAI (usually measured in field) would be lower
+		- technical parameters (d_cube, env_cube_size) for tuning of the distribution of leaf objects
+		- LAD - there are two possibilities how to set LAD
+			1) "file" - using predefined LAD with file LAD.txt (LAD_plano.txt and LAD_er.txt - more details below)
+				- when this option is chosen, it is necessary to set path and file name to the LAD.txt file
+			2) "spruce" - using measured LAD - right now only measurements for Norway spruce is available and fixedly set in the code - it should be mostly close to spherical LAD
+		- shoot or leaf object area - need to be set correctly. Based on this parameter and tree LAI is computed the total number of the 3D shoot/leaf objects
+		- there are three possibilities how to set a leaf object or objects
+			1) single leaf - 'single_leaf'
+				- The tree crown will contain only one leaf object, which will vary only sligthly in the size
+					- The area of this leaf has to be the same as set in the (Main.py)
+				- If you select this option, then you need to set your leaf object name on line 33
+			2) three leaves - 'three_leaves'
+				- The tree crown will contain three different leaf objects: one represents average leaf (in terms of area),
+						one smaller and one larger.
+					- There will be 50% of average leaves and 25% of smaller and 25% of larger leaves
+					- The average (50% average, 25% smaller and 25% of larger) leaf area has to be the same
+						as set in the (Main.py)
+					- The size of all leaf objects will also sligthly vary
+				- if you select this option, then you need to set your leaf object names on lines 25-27
+			3) multiple leaves - 'multiple_leaves'
+				- The tree crown will contain all the leaf objects you set here
+					- The average leaf area of all leaves set here has to be the same as set in the (Main_beech_TH.py)
+					- The size of all leaf objects will also vary
+				- If you select this option, then you need to set your leaf object names on line 30
 - main_classes.py
 	- library of classes
+- LAD_plano.txt
+	- planophile LAD
+- LAD_er.txt
+	- erectophile LAD
 ------------------------------------------------------------------------------------------------------
 **References:**
 
