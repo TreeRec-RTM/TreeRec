@@ -49,8 +49,8 @@ if leaf_form == 'three_leaves':
 elif leaf_form == 'multiple_leaves':
     leaf_name_arr = ['beech_leaf_simple_1.obj','beech_leaf_simple_2.obj','beech_leaf_simple_3.obj','beech_leaf_simple_4.obj','beech_leaf_simple_5.obj']
 else: # leaf_form == 'single_leaf' and also the default one
-    leaf_name_arr = 'beech_leaf_simple.obj'
-    # leaf_name_arr = 'PIABshoot0_one_shoot_simpl_bl.obj'
+    # leaf_name_arr = 'beech_leaf_simple.obj' # fix the leaf !!!!
+    leaf_name_arr = 'PIABshoot0_one_shoot_simpl_bl.obj'
 
 source_dir = os.path.join(data_dir)
 if not os.path.isdir(source_dir):

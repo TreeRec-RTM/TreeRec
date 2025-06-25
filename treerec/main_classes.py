@@ -365,25 +365,32 @@ class Tree:
         print('--------------------------------------------------------------')
         print(Back.BLUE+'Distributing the shoots into the tree crown and separate them into two groups:'+Style.RESET_ALL)
         start_time = time.time()
-        self.age_separation(origin, end)
-        t_file_edge_name = self.gen_setup.cur_pos_path
-        t_file_edge = open(t_file_edge_name, 'w')
-        t_file_edge_csv = csv.writer(t_file_edge, delimiter=' ')
-        for i_vox in tqdm(self.current_pos):
-            angle = self.get_shoot_angle(i_vox[1])
-            t_line = [i_vox[0], i_vox[1], i_vox[2], angle]
-            t_file_edge_csv.writerow(t_line)
-            del t_line
-        t_file_in_name = self.gen_setup.old_pos_path
-        t_file_in = open(t_file_in_name, 'w')
-        t_file_in_csv = csv.writer(t_file_in, delimiter=' ')
-        for i_vox in tqdm(self.older_pos):
-            angle = self.get_shoot_angle(i_vox[1])
-            t_line = [i_vox[0], i_vox[1], i_vox[2], angle]
-            t_file_in_csv.writerow(t_line)
-            del t_line
-        t_file_edge.close()
-        t_file_in.close()
+        if self.gen_setup.cs_check:
+            self.age_separation(origin, end)
+            self.get_shoot_angle(self.current_pos, self.gen_setup.cur_pos_path)
+            self.get_shoot_angle(self.older_pos, self.gen_setup.old_pos_path)
+            # t_file_edge_name = self.gen_setup.cur_pos_path
+            # t_file_edge = open(t_file_edge_name, 'w')
+            # t_file_edge_csv = csv.writer(t_file_edge, delimiter=' ')
+            # print(self.current_pos)
+            # for i_vox in tqdm(self.current_pos):
+            #     angle = self.get_shoot_angle(i_vox[1])
+            #     t_line = [i_vox[0], i_vox[1], i_vox[2], angle]
+            #     t_file_edge_csv.writerow(t_line)
+            #     del t_line
+            # t_file_edge.close()
+            # t_file_in_name = self.gen_setup.old_pos_path
+            # t_file_in = open(t_file_in_name, 'w')
+            # t_file_in_csv = csv.writer(t_file_in, delimiter=' ')
+            # for i_vox in tqdm(self.older_pos):
+            #     angle = self.get_shoot_angle(i_vox[1])
+            #     t_line = [i_vox[0], i_vox[1], i_vox[2], angle]
+            #     t_file_in_csv.writerow(t_line)
+            #     del t_line
+            # # t_file_edge.close()
+            # t_file_in.close()
+        else:
+            self.get_shoot_angle(self.all_pos, self.gen_setup.pos_path)
         print('Distribution files created.')
         print('It takes %s seconds.' % (time.time()-start_time))
         print('--------------------------------------------------------------')
@@ -475,31 +482,41 @@ class Tree:
             per = 0.05
         return per
 
-    def get_shoot_angle(self, z_coo):
+    def get_shoot_angle(self, t_pos, t_pos_path):
+    # def get_shoot_angle(self, z_coo):
         """
         Definition of the shoot elevation angle (zero is on the horizontal level - perpendicular to the trunk/axes of the tree) depending on height in the tree.
-        @param z_coo: z-coordinate of the shoot location
+        @param t_pos: calculated shoot/leaf postions
+        @param t_pos_path: path to the file with positions
         @return: zenith angle of the shoot - given angle is adjusted to rotation calculation -> the zero is on from above
         note:
          - could be separated to current and the older needles - according to Barták 1992 we are able to define the angle for all age classes of shoots
          - in the future for the generalization of the script, here should be the option for selection of the method how to define LAD, if this way, to set the values for each height level at the tree or by LAD function (as it made in case of eucalipt trees or equation)
         """
-        if z_coo >= self.max_veg-2:
-            angle = (35 + uniform(-5, 12)) * pi/180
-        elif self.max_veg-2 > z_coo >= self.max_veg-3:
-            angle = (5 + uniform(-5, 15)) * pi/180
-        elif self.max_veg-3 > z_coo >= self.max_veg-4:
-            angle = (-15 + uniform(-5, 30)) * pi/180
-        elif self.max_veg-4 > z_coo >= self.max_veg-5:
-            angle = (-35 + uniform(-10, 40)) * pi/180
-        elif self.max_veg-5 > z_coo >= self.max_veg-6:
-            angle = (-45 + uniform(-5, 40)) * pi/180
-        elif self.max_veg-6 > z_coo >= self.max_veg-7:
-            angle = (-25 + uniform(-15, 20)) * pi/180
-        elif self.max_veg-7 > z_coo:
-            angle = (-35 + uniform(-15, 15)) * pi/180
-        angle = pi/2 - angle
-        return angle
+        t_file_name = t_pos_path
+        t_file = open(t_file_name, 'w')
+        t_file_csv = csv.writer(t_file, delimiter=' ')
+        for i_vox in tqdm(t_pos):
+            z_coo = i_vox[1]
+            if z_coo >= self.max_veg-2:
+                angle = (35 + uniform(-5, 12)) * pi/180
+            elif self.max_veg-2 > z_coo >= self.max_veg-3:
+                angle = (5 + uniform(-5, 15)) * pi/180
+            elif self.max_veg-3 > z_coo >= self.max_veg-4:
+                angle = (-15 + uniform(-5, 30)) * pi/180
+            elif self.max_veg-4 > z_coo >= self.max_veg-5:
+                angle = (-35 + uniform(-10, 40)) * pi/180
+            elif self.max_veg-5 > z_coo >= self.max_veg-6:
+                angle = (-45 + uniform(-5, 40)) * pi/180
+            elif self.max_veg-6 > z_coo >= self.max_veg-7:
+                angle = (-25 + uniform(-15, 20)) * pi/180
+            elif self.max_veg-7 > z_coo:
+                angle = (-35 + uniform(-15, 15)) * pi/180
+            angle = pi/2 - angle
+            t_line = [i_vox[0], i_vox[1], i_vox[2], angle]
+            t_file_csv.writerow(t_line)
+            del t_line
+        t_file.close()
     
     def create_tree_obj_file(self):
         """
